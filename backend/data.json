@@ -1,0 +1,222 @@
+[
+  {
+    "username": "user1",
+    "email": "user1@example.com",
+    "password": "hashed_password1",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952001",
+    "createdAt": "2023-12-14T12:34:56.789Z",
+    "updatedAt": "2023-12-14T12:34:56.789Z"
+  },
+  {
+    "username": "user2",
+    "email": "user2@example.com",
+    "password": "hashed_password2",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952002",
+    "createdAt": "2023-12-14T12:35:56.789Z",
+    "updatedAt": "2023-12-14T12:35:56.789Z"
+  },
+  {
+    "username": "user3",
+    "email": "user3@example.com",
+    "password": "hashed_password3",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952003",
+    "createdAt": "2023-12-14T12:36:56.789Z",
+    "updatedAt": "2023-12-14T12:36:56.789Z"
+  },
+  {
+    "username": "user4",
+    "email": "user4@example.com",
+    "password": "hashed_password4",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952004",
+    "createdAt": "2023-12-14T12:37:56.789Z",
+    "updatedAt": "2023-12-14T12:37:56.789Z"
+  },
+  {
+    "username": "user5",
+    "email": "user5@example.com",
+    "password": "hashed_password5",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952005",
+    "createdAt": "2023-12-14T12:38:56.789Z",
+    "updatedAt": "2023-12-14T12:38:56.789Z"
+  },
+  {
+    "username": "user6",
+    "email": "user6@example.com",
+    "password": "hashed_password6",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952006",
+    "createdAt": "2023-12-14T12:39:56.789Z",
+    "updatedAt": "2023-12-14T12:39:56.789Z"
+  },
+  {
+    "username": "user7",
+    "email": "user7@example.com",
+    "password": "hashed_password7",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952007",
+    "createdAt": "2023-12-14T12:40:56.789Z",
+    "updatedAt": "2023-12-14T12:40:56.789Z"
+  },
+  {
+    "username": "user8",
+    "email": "user8@example.com",
+    "password": "hashed_password8",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952008",
+    "createdAt": "2023-12-14T12:41:56.789Z",
+    "updatedAt": "2023-12-14T12:41:56.789Z"
+  },
+  {
+    "username": "user9",
+    "email": "user9@example.com",
+    "password": "hashed_password9",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952009",
+    "createdAt": "2023-12-14T12:42:56.789Z",
+    "updatedAt": "2023-12-14T12:42:56.789Z"
+  },
+  {
+    "username": "user10",
+    "email": "user10@example.com",
+    "password": "hashed_password10",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952010",
+    "createdAt": "2023-12-14T12:43:56.789Z",
+    "updatedAt": "2023-12-14T12:43:56.789Z"
+  },
+  {
+    "username": "user11",
+    "email": "user11@example.com",
+    "password": "hashed_password11",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952011",
+    "createdAt": "2023-12-14T12:44:56.789Z",
+    "updatedAt": "2023-12-14T12:44:56.789Z"
+  },
+  {
+    "username": "user12",
+    "email": "user12@example.com",
+    "password": "hashed_password12",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952012",
+    "createdAt": "2023-12-14T12:45:56.789Z",
+    "updatedAt": "2023-12-14T12:45:56.789Z"
+  },
+  {
+    "username": "user13",
+    "email": "user13@example.com",
+    "password": "hashed_password13",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952013",
+    "createdAt": "2023-12-14T12:46:56.789Z",
+    "updatedAt": "2023-12-14T12:46:56.789Z"
+  },
+  {
+    "username": "user14",
+    "email": "user14@example.com",
+    "password": "hashed_password14",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952014",
+    "createdAt": "2023-12-14T12:47:56.789Z",
+    "updatedAt": "2023-12-14T12:47:56.789Z"
+  },
+  {
+    "username": "user15",
+    "email": "user15@example.com",
+    "password": "hashed_password15",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952015",
+    "createdAt": "2023-12-14T12:48:56.789Z",
+    "updatedAt": "2023-12-14T12:48:56.789Z"
+  },
+  {
+    "username": "user16",
+    "email": "user16@example.com",
+    "password": "hashed_password16",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952016",
+    "createdAt": "2023-12-14T12:49:56.789Z",
+    "updatedAt": "2023-12-14T12:49:56.789Z"
+  },
+  {
+    "username": "user17",
+    "email": "user17@example.com",
+    "password": "hashed_password17",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952017",
+    "createdAt": "2023-12-14T12:50:56.789Z",
+    "updatedAt": "2023-12-14T12:50:56.789Z"
+  },
+  {
+    "username": "user18",
+    "email": "user18@example.com",
+    "password": "hashed_password18",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952018",
+    "createdAt": "2023-12-14T12:51:56.789Z",
+    "updatedAt": "2023-12-14T12:51:56.789Z"
+  },
+  {
+    "username": "user19",
+    "email": "user19@example.com",
+    "password": "hashed_password19",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952019",
+    "createdAt": "2023-12-14T12:52:56.789Z",
+    "updatedAt": "2023-12-14T12:52:56.789Z"
+  },
+  {
+    "username": "user20",
+    "email": "user20@example.com",
+    "password": "hashed_password20",
+    "friendRequestSent": [],
+    "friendRequestReceived": [],
+    "friends": [],
+    "_id": "6443d4d5c328352848952020",
+    "createdAt": "2023-12-14T12:53:56.789Z",
+    "updatedAt": "2023-12-14T12:53:56.789Z"
+  }
+]
