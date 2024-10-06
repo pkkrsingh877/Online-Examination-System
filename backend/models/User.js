@@ -3,23 +3,29 @@ const bcrypt = require('bcrypt');
 
 // Define the User schema
 const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        maxLength: 255
+    },
     username: {
         type: String,
         required: true,
         unique: true,
+        maxLength: 255
     },
     email: {
         type: String,
         required: true,
         unique: true,
+        maxLength: 255
     },
     password: {
         type: String,
         required: true,
-    },
-    friendRequestSent: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    friendRequestReceived: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+        minLength: 8,
+        maxLength: 255
+    }
 }, { timestamps: true });
 
 // Hash password before saving user
