@@ -1,5 +1,5 @@
 const questionSchema = new mongoose.Schema({
-    question: {
+    questionStatement: {
         type: String,
         required: true,
         maxLength: 1000
@@ -25,19 +25,19 @@ const questionSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-// Pre-save hook to validate correct_option
+// Pre-save hook to validate correctOption
 questionSchema.pre('save', function (next) {
-    const { options, correct_option } = this;
+    const { options, correctOption } = this;
 
-    // Check if the correct_option is one of the options
-    if (!options.includes(correct_option)) {
-        return next(new Error('correct_option must match one of the provided options'));
+    // Check if the correctOption is one of the options
+    if (!options.includes(correctOption)) {
+        return next(new Error('correctOption must match one of the provided options'));
     }
 
-    // Ensure that correct_option is only one option (if needed)
-    const count = options.filter(option => option === correct_option).length;
+    // Ensure that correctOption is only one option (if needed)
+    const count = options.filter(option => option === correctOption).length;
     if (count !== 1) {
-        return next(new Error('correct_option must be one and only one of the provided options'));
+        return next(new Error('correctOption must be one and only one of the provided options'));
     }
 
     // If all validations pass, continue saving
