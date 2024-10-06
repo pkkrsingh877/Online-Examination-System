@@ -7,7 +7,7 @@ const NavbarComponent = () => {
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand as={Link} to="/">Online Examination System</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">SkillGauge</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
