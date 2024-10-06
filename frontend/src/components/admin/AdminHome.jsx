@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
-import JoinQuiz from "./quiz/JoinQuiz";
 
 const Home = () => {
     const { user } = useContext(UserContext);
@@ -9,7 +8,7 @@ const Home = () => {
             {/* Check if user exists and then render the username and email */}
             {user ? (
                 <section>
-                    <h1 className="display-1">Hi {user.name}, Welcome To SkillGauge</h1>
+                    <h1 className="display-1">Hi {user.username}, Welcome To SkillGauge</h1>
                     <p className="display-6 text-secondary">World Greatest Place to Take Online Exams</p>
                 </section>
             ) : (

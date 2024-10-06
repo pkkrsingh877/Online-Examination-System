@@ -12,7 +12,7 @@ exports.verifyJwt = async (req, res) => {
         }
 
         // If the user is found and token is valid, return user data
-        res.status(201).json({ user: { id: req.user.userId, username: user.username, email: user.email } });
+        res.status(201).json({ user: { id: req.user.userId, name: user.name, username: user.username, email: user.email } });
     } catch (error) {
         console.error('Error verifying token:', error);
         res.status(500).json({ message: 'Server error' });
@@ -21,7 +21,7 @@ exports.verifyJwt = async (req, res) => {
 
 // Controller for user signup
 exports.signup = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { name, username, email, role, password } = req.body;
 
     try {
         // Check if user already exists
@@ -31,7 +31,7 @@ exports.signup = async (req, res) => {
         }
 
         // Create new user
-        const user = new User({ username, email, password });
+        const user = new User({ name, username, email, role, password });
         await user.save();
 
         // Generate JWT token
@@ -39,7 +39,7 @@ exports.signup = async (req, res) => {
             expiresIn: '30d',
         });
 
-        res.status(201).json({ token, user: { id: user._id, username, email } });
+        res.status(201).json({ token, user: { id: user._id, name: user.name, username, email } });
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: 'Error during signup', error });
@@ -68,7 +68,7 @@ exports.login = async (req, res) => {
             expiresIn: '30d',
         });
 
-        res.status(200).json({ token, user: { id: user._id, username: user.username, email } });
+        res.status(200).json({ token, user: { id: user._id, username: user.username, name: user.name, email } });
     } catch (error) {
         res.status(500).json({ message: 'Error during login', error });
     }
