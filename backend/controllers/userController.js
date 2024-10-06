@@ -1,6 +1,8 @@
 const User = require('../models/User');
 const Result = require('../models/Result');
 
+// We can display result when we figure out how many answers were correct 
+
 const CreateResult = async () => {
     const { correct, total, userId, QuizId } = req.body;
 
@@ -13,6 +15,8 @@ const CreateResult = async () => {
         res.status(500).json({ message: 'Error during result creation', error });
     }
 }
+
+// We can display  profile info from UserContext
 
 const UpdateProfile = async () => {
     const { id, name, username, email, password } = req.body;

@@ -2,6 +2,27 @@ const Quiz = require('../models/Quiz');
 const Question = require('../models/Question');
 const Result = require('../models/Result');
 
+const ListQuizzes = async (req, res) => {
+    const { userId } = req.body;
+
+    try {
+        const quizzes = await Quiz.find({ creatorId: userId });
+        res.status(200).json({ quizzes });
+    } catch (error) {
+        res.status(500).json({ message: 'Error during pulling quizzes', error });
+    }
+}
+
+const ListQuestions = async (req, res) => {
+    const { quizId } = req.body;
+    try {
+        const questions = await Question.find({ quizId: quizId });
+        res.status(200).json({ questions });
+    } catch (error) {
+        res.status(500).json({ 'message': 'Error during pulling questions', error })
+    }
+}
+
 // Controller for Creating Quiz
 const CreateQuiz = async (req, res) => {
     const { title, instructions, joinCode, creatorId } = req.body;
@@ -93,4 +114,4 @@ const DeleteQuestion = async (req, res) => {
     }
 };
 
-module.exports = { CreateQuiz, CreateQuestion, UpdateQuiz, UpdateQuestion, DeleteQuiz, DeleteQuestion };
+module.exports = { ListQuestions, ListQuizzes, CreateQuiz, CreateQuestion, UpdateQuiz, UpdateQuestion, DeleteQuiz, DeleteQuestion };
