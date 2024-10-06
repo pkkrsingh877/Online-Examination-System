@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const PostList = () => {
+const QuizList = () => {
     const [posts, setPosts] = useState([]);
 
     const fetchPosts = async () => {
-        const response = await axios.get('http://localhost:5000/api/posts');
+        const response = await axios.get('http://localhost:5000/api/admin/quiz');
         setPosts(response.data);
     };
 
@@ -28,11 +28,11 @@ const PostList = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No Posts Available to view!</p>
+                    <p>No Quiz Available to view!</p>
                 )}
             </ul>
         </div>
     );
 };
 
-export default PostList;
+export default QuizList;

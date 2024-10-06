@@ -3,29 +3,29 @@ import axios from 'axios';
 import UserContext from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 
-const CreatePost = () => {
+const QuizCreate = () => {
     const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    const [instructions, setInstructions] = useState('');
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const handlePostSubmit = async (e) => {
+    const handleQuizSubmit = async (e) => {
         e.preventDefault();
         try {
             console.log(user)
             const userId = user.id;
-            const response = await axios.post('http://localhost:5000/api/posts', { title, content, userId });
-            console.log('Post created:', response.data);
+            const response = await axios.post('http://localhost:5000/api/admin/quiz', { title, Instructions, userId });
+            console.log('Quiz created:', response.data);
             // Redirect or show success message
-            navigate('/posts');
+            navigate('/admin');
         } catch (error) {
-            console.error('Error creating post:', error);
+            console.error('Error creating Quiz:', error);
         }
     };
 
     return (
-        <form onSubmit={handlePostSubmit}>
-            <h2>Create Post</h2>
+        <form onSubmit={handleQuizSubmit}>
+            <h2>Create Quiz</h2>
             <input
                 type="text"
                 placeholder="Title"
@@ -34,14 +34,14 @@ const CreatePost = () => {
                 required
             />
             <textarea
-                placeholder="Write your post here..."
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
+                placeholder="Write Quiz Instructions here..."
+                value={instructions}
+                onChange={(e) => setInstructions(e.target.value)}
                 required
             />
-            <button type="submit">Post</button>
+            <button type="submit">Submit</button>
         </form>
     );
 };
 
-export default CreatePost;
+export default QuizCreate;

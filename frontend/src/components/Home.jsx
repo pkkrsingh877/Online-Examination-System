@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
-import styles from "../css/Home.module.css";
+import NavbarComponent from "./utilities/NavbarComponent";
 
 const Home = () => {
     const { user } = useContext(UserContext);
     return (
-        <div className={styles.main}>
+        <div className="box">
             <h1>Interspace Online</h1>
-            <div className={styles.links}>
+            <div className="">
                 <Link to="/login">Login</Link>
                 <Link to="/signup">Signup</Link>
                 <Link to="/posts">Posts</Link>

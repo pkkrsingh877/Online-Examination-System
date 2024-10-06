@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import UserContext from '../context/UserContext';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -21,31 +21,42 @@ const Signup = () => {
     };
 
     return (
-        <form onSubmit={handleSignup}>
+        <Form onSubmit={handleSignup}>
             <h2>Signup</h2>
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-            />
-            <input
-                type="email"
-                placeholder="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
-            <button type="submit">Sign Up</button>
-        </form>
+            <Form.Group className="mb-3" controlId="formUsername">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                    type="email"
+                    placeholder="name@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Sign Up
+            </Button>
+        </Form>
     );
 };
 
