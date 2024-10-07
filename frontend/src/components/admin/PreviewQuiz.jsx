@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Spinner } from 'react-bootstrap';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 const PreviewQuiz = () => {
   const { id } = useParams(); // Get quiz ID from URL parameters
   const [quiz, setQuiz] = useState(null);
+  const navigate = useNavigate();
+
+  const deleteQuiz = async (quizId) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/admin/quiz/${quizId}`);
+      navigate('/admin/quiz');
+    } catch (error) {
+      console.error("Error deleting quiz", error);
+    }
+  };
 
   const fetchQuizData = async () => {
     try {
@@ -34,10 +44,10 @@ const PreviewQuiz = () => {
         <Card.Text>
           <small>Created on: {new Date(quiz.createdAt).toLocaleString()}</small>
         </Card.Text>
-        <Button variant="primary" onClick={() => console.log('Edit Quiz')}>
-          Edit Quiz
+        <Button as={Link} to={`/admin/quiz/${quiz._id}/update`} variant="primary">
+          Update Quiz
         </Button>
-        <Button variant="danger" className="ml-2" onClick={() => console.log('Delete Quiz')}>
+        <Button onClick={() => deleteQuiz(quiz._id)} variant="danger">
           Delete Quiz
         </Button>
       </Card.Body>) :
