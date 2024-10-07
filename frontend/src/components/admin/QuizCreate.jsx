@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserContext from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import { generateJoinCode } from '../../functions/generateJoinCode';
 
 const QuizCreate = () => {
     const [title, setTitle] = useState('');
@@ -13,9 +14,8 @@ const QuizCreate = () => {
     const handleQuizSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log(user)
-            const userId = user.id;
-            const response = await axios.post('http://localhost:5000/api/admin/quiz', { title, instructions, userId });
+            const creatorId = user.id;
+            const response = await axios.post('http://localhost:5000/api/admin/quiz', { title, instructions, joinCode: generateJoinCode(), creatorId });
             console.log('Quiz created:', response.data);
             // Redirect or show success message
             navigate('/admin');

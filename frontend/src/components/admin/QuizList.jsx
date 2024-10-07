@@ -10,7 +10,10 @@ const QuizList = () => {
 
     const fetchQuizzes = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/admin/quiz?creatorId=${user.id}`);
+            const response = await axios.get('http://localhost:5000/api/admin/quiz', {
+                params: { creatorId: user.id } // Use params to send query parameters
+            });
+            console.log(response.data)
             setQuizzes(response.data);
         } catch (error) {
             console.error("Error fetching quizzes", error);
@@ -18,7 +21,7 @@ const QuizList = () => {
     };
 
     useEffect(() => {
-        if (user?.id) {
+        if (user) {
             fetchQuizzes();
         }
     }, [user]);

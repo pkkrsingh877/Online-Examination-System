@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 const authRoutes = require('./routes/authRoutes');
-const bodyParser = require('body-parser')
+const adminRoutes = require('./routes/adminRoutes');
 
 require('dotenv').config()
 
@@ -17,13 +17,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 // MongoDB connection
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/oes-db'; // Replace with your MongoDB URI
+const mongoURI = process.env.MONGODB_URI; // Replace with your MongoDB URI
 mongoose.connect(mongoURI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error(err));
 
 // Routes
 app.use('/api', authRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Start the server
 app.listen(PORT, () => {

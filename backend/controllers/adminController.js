@@ -3,18 +3,19 @@ const Question = require('../models/Question');
 const Result = require('../models/Result');
 
 const ListQuizzes = async (req, res) => {
-    const { userId } = req.body;
+    const { creatorId } = req.query;
 
     try {
-        const quizzes = await Quiz.find({ creatorId: userId });
-        res.status(200).json({ quizzes });
+        const quizzes = await Quiz.find({ creatorId });
+        console.log(quizzes)
+        res.status(200).json(quizzes);
     } catch (error) {
         res.status(500).json({ message: 'Error during pulling quizzes', error });
     }
 }
 
 const ListQuestions = async (req, res) => {
-    const { quizId } = req.body;
+    const { quizId } = req.params;
     try {
         const questions = await Question.find({ quizId: quizId });
         res.status(200).json({ questions });
