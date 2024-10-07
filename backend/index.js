@@ -26,7 +26,7 @@ mongoose.connect(mongoURI)
 // Routes
 app.use('/api', authRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api/', userRoutes);
+app.use('/api', userRoutes);
 
 // Start the server
 app.listen(PORT, () => {

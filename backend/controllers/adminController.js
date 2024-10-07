@@ -1,6 +1,6 @@
+const Result = require('../models/Result');
 const Quiz = require('../models/Quiz');
 const Question = require('../models/Question');
-const Result = require('../models/Result');
 
 const ListQuizzes = async (req, res) => {
     const { creatorId } = req.query;

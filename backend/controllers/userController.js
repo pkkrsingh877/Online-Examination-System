@@ -1,20 +1,38 @@
 const User = require('../models/User');
 const Result = require('../models/Result');
+const Quiz = require('../models/Quiz');
+const Question = require('../models/Question');
 
 // We can display result when we figure out how many answers were correct 
 
 const CreateResult = async (req, res) => {
-    const { correct, total, userId, QuizId } = req.body;
-
     try {
-        const result = new Result({ correct, total, userId, QuizId });
+        const { answers, userId, quizId } = req.body;
+        let correctCount = 0;
+
+        // Fetch correct answers for the quiz
+        const questions = await Question.find({ quizId });
+
+        // Calculate correct answers count
+        questions.forEach(question => {
+            const userAnswer = answers.find(ans => ans.questionId === question._id.toString());
+            if (userAnswer && userAnswer.selectedAnswer === question.correctOption) {
+                correctCount++;
+            }
+        });
+
+        // Save result to database
+        const result = new Result({ correct: correctCount, total: questions.length, quizId, userId });
         await result.save();
 
-        res.status(200).json({ result });
+        // Send back response
+        res.status(200).json({ correct: correctCount, total: questions.length });
     } catch (error) {
-        res.status(500).json({ message: 'Error during result creation', error });
+        console.error('Error calculating results:', error);
+        res.status(500).json({ message: 'Error calculating results' });
     }
 }
+
 
 // We can display  profile info from UserContext
 
@@ -79,11 +97,26 @@ const ListQuiz = async (req, res) => {
 const ListQuestions = async (req, res) => {
     const { id } = req.params;
     try {
+        const quiz = await Quiz.findById(id);
+        const quizName = quiz.title;
         const questions = await Question.find({ quizId: id });
-        res.status(200).json(questions);
+        res.status(200).json({ quizName, questions });
     } catch (error) {
+        console.log(error)
         res.status(500).json({ 'message': 'Error during pulling questions', error })
     }
 }
 
-module.exports = { ListQuiz, ListQuestions, CreateResult, UpdateProfile, DeleteAccount };
+const JoinQuiz = async (req, res) => {
+
+    try {
+        const { joinCode } = req.params;
+        const quiz = await Quiz.findOne({ joinCode });
+        console.log(quiz)
+        res.status(200).json(quiz);
+    } catch (error) {
+        res.status(500).json({ message: 'Error during pulling quiz', error });
+    }
+}
+
+module.exports = { JoinQuiz, ListQuiz, ListQuestions, CreateResult, UpdateProfile, DeleteAccount };

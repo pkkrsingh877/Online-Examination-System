@@ -1,69 +1,76 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams, useNavigate } from 'react-router-dom';
+import UserContext from '../../context/UserContext';
+import axios from 'axios';
 
 const AttemptQuiz = () => {
-    const [timeLeft, setTimeLeft] = useState(3600); // Timer set to 1 hour (3600 seconds)
-    const [answers, setAnswers] = useState({});
+    const [answers, setAnswers] = useState([]); // User answers stored here
+    const [questions, setQuestions] = useState([]); // State to hold fetched questions
+    const [quizName, setQuizName] = useState(''); // State to hold quiz name
+    const { user } = useContext(UserContext);
+    const { quizId } = useParams();
+    const navigate = useNavigate();
 
-    // Sample questions data
-    const quizName = "Sample Quiz";
-    const questions = [
-        { id: 1, question: "What is 2 + 2?", options: ["3", "4", "5", "6"] },
-        { id: 2, question: "What is the capital of France?", options: ["Berlin", "Madrid", "Paris", "Lisbon"] },
-        { id: 3, question: "What is the square root of 16?", options: ["2", "3", "4", "5"] },
-        // Add more questions as needed
-    ];
-
-    // Timer function
-    useEffect(() => {
-        if (timeLeft <= 0) {
-            // Timer expired logic here (e.g., auto-submit)
-            alert("Time's up!");
-            handleSubmit();
-            return;
+    const fetchQuestions = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/api/quiz/${quizId}/question`);
+            setQuestions(response.data.questions);
+            setQuizName(response.data.quizName);
+        } catch (error) {
+            console.error('Error fetching questions:', error);
         }
-        const intervalId = setInterval(() => {
-            setTimeLeft(prevTime => prevTime - 1);
-        }, 1000);
-        return () => clearInterval(intervalId);
-    }, [timeLeft]);
-
-    const formatTime = () => {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    // Handle answer selection
-    const handleAnswerChange = (questionId, answer) => {
-        setAnswers(prevAnswers => ({ ...prevAnswers, [questionId]: answer }));
+    useEffect(() => {
+        fetchQuestions();
+    }, [quizId]);
+
+    // Handle answer selection and update answers array
+    const handleAnswerChange = (questionId, selectedAnswer) => {
+        setAnswers(prevAnswers => {
+            const updatedAnswers = prevAnswers.filter(answer => answer.questionId !== questionId);
+            updatedAnswers.push({ questionId, selectedAnswer });
+            return updatedAnswers;
+        });
     };
 
     // Handle form submission
-    const handleSubmit = () => {
-        // Submit the answers here
-        console.log("Submitted answers:", answers);
-        alert("Quiz Submitted!");
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post('http://localhost:5000/api/quiz/result', { answers, quizId, userId: user.id });
+            const data = response.data;
+            if (response.status === 200) {
+                // Navigate to QuizResult and pass the data
+                navigate('/quiz/result', { state: { correct: data.correct, total: data.total } });
+                // Process response if needed, e.g., show score
+            } else {
+                throw new Error('Failed to submit results');
+            }
+        } catch (error) {
+            console.error('Error submitting results:', error);
+        }
     };
 
     return (
         <div className="container mt-5">
             <h1>{quizName}</h1>
-            <p>Time Remaining: {formatTime()}</p>
 
             <Form>
-                {questions.map(question => (
-                    <div key={question.id} className="mb-4">
-                        <h5>{question.question}</h5>
-                        {question.options.map((option, index) => (
+                {questions.map(({ _id, questionStatement, options }) => (
+                    <div key={_id} className="mb-4">
+                        <h5>Q. {questionStatement}</h5>
+                        {options.map((option, index) => (
                             <Form.Check
                                 type="radio"
                                 label={option}
-                                name={`question-${question.id}`}
-                                key={index}
-                                onChange={() => handleAnswerChange(question.id, option)}
+                                name={`question-${_id}`}
+                                key={`question-${_id}-${index}`}
+                                value={option}
+                                checked={answers.find(answer => answer.questionId === _id)?.selectedAnswer === option}
+                                onChange={() => handleAnswerChange(_id, option)}
                             />
                         ))}
                     </div>

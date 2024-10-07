@@ -13,6 +13,7 @@ import QuestionCreate from './components/admin/QuestionCreate';
 import QuestionUpdate from './components/admin/QuestionUpdate';
 import QuizInstructions from './components/quiz/QuizInstructions';
 import AttemptQuiz from './components/quiz/AttemptQuiz';
+import QuizResult from './components/quiz/QuizResult';
 
 function App() {
   return (
@@ -20,9 +21,11 @@ function App() {
       <NavbarComponent />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/signup" element={<Signup />} />
         <Route path="/quiz/instructions/:joinCode" element={<QuizInstructions />} />
-        <Route path="/quiz/:id/attempt" element={<AttemptQuiz />} />
+        <Route path="/quiz/:quizId/attempt" element={<AttemptQuiz />} />
+        <Route path="/quiz/result" element={<QuizResult />} />
         <Route path="/admin/" element={<AdminHome />} />
         <Route path="/admin/" element={<AdminHome />} />
         <Route path="/admin/quiz" element={<QuizList />} />

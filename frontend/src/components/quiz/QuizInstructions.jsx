@@ -3,21 +3,21 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const QuizInstructions = () => {
     const { joinCode } = useParams(); // Changed to match your original JoinQuiz component
-    const [quizData, setQuizData] = useState(null); // State to hold quiz data
+    const [quizData, setQuizData] = useState(''); // State to hold quiz data
 
     const fetchQuizData = async () => {
         try {
-            const response = await fetch(`/quiz/${joinCode}`); // Replace with your actual API endpoint
-            if (!response.ok) {
-                throw new Error('Failed to fetch quiz data');
-            }
-            const data = await response.json();
+            const response = await axios.get(`http://localhost:5000/api/quiz/${joinCode}`); // Replace with your actual API endpoint
+            const data = response.data;
+            console.log(joinCode)
             setQuizData(data); // Assuming data contains the quiz title and instructions
         } catch (err) {
-            console.log(err.message);
+            console.log(err);
         }
     };
 
@@ -31,9 +31,9 @@ const QuizInstructions = () => {
                 <Card.Body>
                     <Card.Title as="h2">{quizData.title}</Card.Title> {/* Display quiz title */}
                     <Card.Text>
-                        <p>{quizData.instructions}</p> {/* Display quiz instructions */}
+                        {quizData.instructions} {/* Display quiz instructions */}
                     </Card.Text>
-                    <Button variant="primary" size="lg">
+                    <Button as={Link} to={`/quiz/${quizData._id}/attempt`} variant="success">
                         Start Quiz
                     </Button>
                 </Card.Body>

@@ -4,13 +4,13 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const JoinQuiz = () => {
-    const [joinId, setJoinId] = useState('');
+    const [joinCode, setJoinCode] = useState('');
     const navigate = useNavigate(); // Initialize useNavigate
 
     const handleJoin = (e) => {
         e.preventDefault();
         // Navigate to QuizInstructions page with joinId
-        navigate(`/quiz/instructions/${joinId}`);
+        navigate(`/quiz/instructions/${joinCode}`);
     };
 
     return (
@@ -21,8 +21,8 @@ const JoinQuiz = () => {
                 <Form.Control
                     type="text"
                     placeholder="Enter Join ID"
-                    value={joinId}
-                    onChange={(e) => setJoinId(e.target.value)}
+                    value={joinCode}
+                    onChange={(e) => setJoinCode(e.target.value)}
                     required
                 />
             </Form.Group>
