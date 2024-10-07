@@ -49,7 +49,7 @@ const QuizList = () => {
                         </Row>
                         <Row>
                             <Col md={4}>
-                                <Button as={Link} to={`/update-quiz/${quiz._id}`} variant="primary" className="w-100">
+                                <Button as={Link} to={`/admin/quiz/${quiz._id}/update`} variant="primary" className="w-100">
                                     Update Quiz
                                 </Button>
                             </Col>

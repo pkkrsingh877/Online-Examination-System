@@ -1,8 +1,9 @@
 const express = require('express');
-const { ListQuestions, ListQuizzes, CreateQuiz, CreateQuestion, UpdateQuiz, UpdateQuestion, DeleteQuiz, DeleteQuestion } = require('../controllers/adminController');
+const { ListQuestions, ListQuizzes, ListQuiz, CreateQuiz, CreateQuestion, UpdateQuiz, UpdateQuestion, DeleteQuiz, DeleteQuestion } = require('../controllers/adminController');
 const router = express.Router();
 
 router.get('/quiz', ListQuizzes);
+router.get('/quiz/:id', ListQuiz);
 router.get('/quiz/:id/question', ListQuestions);
 
 router.post('/quiz', CreateQuiz);

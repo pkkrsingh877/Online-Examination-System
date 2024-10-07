@@ -7,10 +7,20 @@ const ListQuizzes = async (req, res) => {
 
     try {
         const quizzes = await Quiz.find({ creatorId });
-        console.log(quizzes)
         res.status(200).json(quizzes);
     } catch (error) {
         res.status(500).json({ message: 'Error during pulling quizzes', error });
+    }
+}
+
+const ListQuiz = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const quiz = await Quiz.findById(id);
+        res.status(200).json(quiz);
+    } catch (error) {
+        res.status(500).json({ message: 'Error during pulling quiz', error });
     }
 }
 
@@ -54,8 +64,8 @@ const CreateQuestion = async (req, res) => {
 
 // Controller for Updating Quiz
 const UpdateQuiz = async (req, res) => {
-    const { id, title, instructions } = req.body;
-
+    const { title, instructions } = req.body;
+    const { id } = req.params;
     try {
         const quiz = await Quiz.findByIdAndUpdate(id, { title, instructions }, { new: true });
         res.status(200).json({ quiz });
@@ -115,4 +125,4 @@ const DeleteQuestion = async (req, res) => {
     }
 };
 
-module.exports = { ListQuestions, ListQuizzes, CreateQuiz, CreateQuestion, UpdateQuiz, UpdateQuestion, DeleteQuiz, DeleteQuestion };
+module.exports = { ListQuestions, ListQuizzes, ListQuiz, CreateQuiz, CreateQuestion, UpdateQuiz, UpdateQuestion, DeleteQuiz, DeleteQuestion };
