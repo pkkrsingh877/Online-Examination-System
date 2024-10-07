@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 require('dotenv').config()
 
@@ -25,6 +26,7 @@ mongoose.connect(mongoURI)
 // Routes
 app.use('/api', authRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/', userRoutes);
 
 // Start the server
 app.listen(PORT, () => {

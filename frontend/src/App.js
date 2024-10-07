@@ -11,6 +11,8 @@ import QuizCreate from './components/admin/QuizCreate';
 import PreviewQuiz from './components/admin/PreviewQuiz';
 import QuestionCreate from './components/admin/QuestionCreate';
 import QuestionUpdate from './components/admin/QuestionUpdate';
+import QuizInstructions from './components/quiz/QuizInstructions';
+import AttemptQuiz from './components/quiz/AttemptQuiz';
 
 function App() {
   return (
@@ -19,7 +21,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth/signup" element={<Signup />} />
-        <Route path="/auth/login" element={<Login />} />
+        <Route path="/quiz/instructions/:joinCode" element={<QuizInstructions />} />
+        <Route path="/quiz/:id/attempt" element={<AttemptQuiz />} />
+        <Route path="/admin/" element={<AdminHome />} />
         <Route path="/admin/" element={<AdminHome />} />
         <Route path="/admin/quiz" element={<QuizList />} />
         <Route path="/admin/quiz/:id" element={<PreviewQuiz />} />

@@ -3,7 +3,7 @@ const Result = require('../models/Result');
 
 // We can display result when we figure out how many answers were correct 
 
-const CreateResult = async () => {
+const CreateResult = async (req, res) => {
     const { correct, total, userId, QuizId } = req.body;
 
     try {
@@ -18,7 +18,7 @@ const CreateResult = async () => {
 
 // We can display  profile info from UserContext
 
-const UpdateProfile = async () => {
+const UpdateProfile = async (req, res) => {
     const { id, name, username, email, password } = req.body;
 
     try {
@@ -65,4 +65,25 @@ const DeleteAccount = async (req, res) => {
     }
 };
 
-module.exports = { CreateResult, UpdateProfile, DeleteAccount };
+const ListQuiz = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const quiz = await Quiz.findById(id);
+        res.status(200).json(quiz);
+    } catch (error) {
+        res.status(500).json({ message: 'Error during pulling quiz', error });
+    }
+}
+
+const ListQuestions = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const questions = await Question.find({ quizId: id });
+        res.status(200).json(questions);
+    } catch (error) {
+        res.status(500).json({ 'message': 'Error during pulling questions', error })
+    }
+}
+
+module.exports = { ListQuiz, ListQuestions, CreateResult, UpdateProfile, DeleteAccount };

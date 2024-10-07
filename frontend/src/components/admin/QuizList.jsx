@@ -63,6 +63,16 @@ const QuizList = () => {
                                     Delete Quiz
                                 </Button>
                             </Col>
+                            <Col md={4}>
+                                <Button as={Link} to={`/admin/quiz/${quiz._id}/question/create`} variant="success" className="w-100">
+                                    Add Questions
+                                </Button>
+                            </Col>
+                            <Col md={4}>
+                                <Button as={Link} to={`/admin/quiz/${quiz._id}`} variant="success" className="w-100">
+                                    View Quiz
+                                </Button>
+                            </Col>
                         </Row>
                     </div>
                 ))

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const JoinQuiz = () => {
     const [joinId, setJoinId] = useState('');
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleJoin = (e) => {
         e.preventDefault();
-        // Add logic for handling the join action here
-        console.log('Join ID:', joinId);
+        // Navigate to QuizInstructions page with joinId
+        navigate(`/quiz/instructions/${joinId}`);
     };
 
     return (

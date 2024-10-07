@@ -25,10 +25,10 @@ const ListQuiz = async (req, res) => {
 }
 
 const ListQuestions = async (req, res) => {
-    const { quizId } = req.params;
+    const { id } = req.params;
     try {
-        const questions = await Question.find({ quizId: quizId });
-        res.status(200).json({ questions });
+        const questions = await Question.find({ quizId: id });
+        res.status(200).json(questions);
     } catch (error) {
         res.status(500).json({ 'message': 'Error during pulling questions', error })
     }
@@ -51,6 +51,7 @@ const CreateQuiz = async (req, res) => {
 // Controller for Creating Quiz
 const CreateQuestion = async (req, res) => {
     const { id } = req.params;
+
     const { questionStatement, options, correctOption } = req.body;
 
     try {
