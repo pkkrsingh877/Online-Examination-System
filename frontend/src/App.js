@@ -9,6 +9,8 @@ import QuizList from './components/admin/QuizList';
 import QuizUpdate from './components/admin/QuizUpdate';
 import QuizCreate from './components/admin/QuizCreate';
 import PreviewQuiz from './components/admin/PreviewQuiz';
+import QuestionCreate from './components/admin/QuestionCreate';
+import QuestionUpdate from './components/admin/QuestionUpdate';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/admin/quiz/:id" element={<PreviewQuiz />} />
         <Route path="/admin/quiz/create" element={<QuizCreate />} />
         <Route path="/admin/quiz/:id/update" element={<QuizUpdate />} />
+        <Route path="/admin/quiz/:quizId/question/create" element={<QuestionCreate />} />
+        <Route path="/admin/quiz/:quizId/question/:questionId/update" element={<QuestionUpdate />} />
       </Routes>
     </Router>
   );

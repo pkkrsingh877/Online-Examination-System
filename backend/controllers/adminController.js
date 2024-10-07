@@ -50,10 +50,11 @@ const CreateQuiz = async (req, res) => {
 
 // Controller for Creating Quiz
 const CreateQuestion = async (req, res) => {
-    const { questionStatement, options, correctOption, quizId } = req.body;
+    const { id } = req.params;
+    const { questionStatement, options, correctOption } = req.body;
 
     try {
-        const question = new Question({ questionStatement, options, correctOption, quizId });
+        const question = new Question({ questionStatement, options, correctOption, quizId: id });
         await question.save();
 
         res.status(200).json({ question });
