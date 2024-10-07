@@ -1,25 +1,33 @@
-import { useContext } from "react";
-import UserContext from "../context/UserContext";
+import React, { useContext } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 
-const Home = () => {
+const AdminHome = () => {
     const { user } = useContext(UserContext);
+
     return (
-        <div className="box">
-            {/* Check if user exists and then render the username and email */}
-            {user ? (
-                <section>
-                    <h1 className="display-1">Hi {user.username}, Welcome To SkillGauge</h1>
-                    <p className="display-6 text-secondary">World Greatest Place to Take Online Exams</p>
-                </section>
-            ) : (
-                <section>
-                    <h1 className="display-1">Hi There, Welcome To SkillGauge</h1>
-                    <p className="display-6 text-secondary">World Greatest Place to Take Online Exams</p>
-                </section>
-            )}
-            <JoinQuiz />
-        </div>
+        <Container className="mt-4">
+            <Row className="mb-4">
+                <Col>
+                    <h2>Welcome, {user?.username || 'Admin'}!</h2>
+                    <p>Manage your quizzes with the options below.</p>
+                </Col>
+            </Row>
+            <Row>
+                <Col md={6} className="mb-2">
+                    <Button as={Link} to="/admin/quiz/create" variant="primary" className="w-100">
+                        Create Quiz
+                    </Button>
+                </Col>
+                <Col md={6} className="mb-2">
+                    <Button as={Link} to="/admin/quiz" variant="secondary" className="w-100">
+                        List Quizzes
+                    </Button>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
-export default Home;
+export default AdminHome;

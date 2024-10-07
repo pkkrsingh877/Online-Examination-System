@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from '../../css/posts/Post.module.css';
 
 const Post = () => {
   const { id } = useParams();  // Get the post id from the URL
